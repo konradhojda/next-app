@@ -6,10 +6,9 @@ import data from "../api/blog.json";
 import { Pagination } from "../components/Pagination";
 import { POSTS_SIZE } from "../utils/const";
 
-
 export default function Home() {
   const { posts } = data;
-  
+
   const [blogPosts, setBlogPosts] = useState<Post[]>(posts);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<number | undefined>(
@@ -64,19 +63,21 @@ export default function Home() {
   }, [blogPosts]);
 
   return (
-    <div className="flex w-full flex-col max-w-[1200px] mx-auto items-center">
-      <div className="flex gap-6 mb-5 mt-10">
-        {!Boolean(currentTableData.length) && <p>There are no posts with selected filters</p>}
+    <div className="flex w-full flex-col xl:max-w-[1200px] mx-auto items-center p-6 xl:p-0">
+      <div className="flex flex-col xl:flex-row gap-6 mb-5 w-full mt-4">
+        {!Boolean(currentTableData.length) && (
+          <p>There are no posts with selected filters</p>
+        )}
         {currentTableData.map((post) => (
           <div
             key={post.title}
             className="flex flex-col items-centerborder-radius-3
-       shadow-[0px_4px_10px_rgba(0,0,0,0.15)] w-1/3"
+       shadow-[0px_4px_10px_rgba(0,0,0,0.15)] xl:w-1/3"
           >
             <Link href={`/posts/${post.slug}`}>
-              <img src={post.imageUrl} className="mb-5 h-[200px] w-full" />
-              <div className="px-4 pb-4 w-full">
-                <h3 className="text-[14px] mb-3">{post.title}</h3>
+              <img src={post.imageUrl} className="h-[200px] w-full" />
+              <div className="p-4 w-full flex justify-center items-center h-[100px]">
+                <h3 className="text-[14px] text-center">{post.title}</h3>
               </div>
             </Link>
           </div>

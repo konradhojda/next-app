@@ -11,16 +11,14 @@ function getAllPostSlugs() {
   return postSlugs.map((slug) => {
     return {
       params: {
-        slug,
+        slug: slug,
       },
     };
   });
 }
 
 export default function SinglePostPage({ postData }: { postData: Post }) {
-  return (
-    <PostComponent postData={postData} />
-  );
+  return <PostComponent postData={postData} />;
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
