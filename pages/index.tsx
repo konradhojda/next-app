@@ -4,8 +4,9 @@ import React, { useMemo, useState } from "react";
 import { Post } from "../api/blog";
 import data from "../api/blog.json";
 import { Pagination } from "../components/Pagination";
+import { POSTS_SIZE } from "../utils/consts";
 
-const PAGE_SIZE = 3;
+
 export default function Home() {
   const { posts } = data;
   const [blogPosts, setBlogPosts] = useState<Post[]>(posts);
@@ -52,8 +53,8 @@ export default function Home() {
   };
 
   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
+    const firstPageIndex = (currentPage - 1) * POSTS_SIZE;
+    const lastPageIndex = firstPageIndex + POSTS_SIZE;
 
     return blogPosts.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, blogPosts]);
@@ -102,7 +103,7 @@ export default function Home() {
 
       <Pagination
         totalCount={postTotalCount}
-        pageSize={PAGE_SIZE}
+        pageSize={POSTS_SIZE}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />
