@@ -23,17 +23,24 @@ export const Pagination = ({
     }
   };
   return (
-    <>
-      <div className="flex gap-3">
-        <button onClick={onPrevious} className="cursor-pointer">
+    <div className="flex flex-col ">
+      <div className="flex gap-3 items-center justify-center">
+        <button
+          onClick={onPrevious}
+          className="cursor-pointer bg-blue-600 p-3 text-white rounded"
+        >
           Prev
         </button>
-        <span>{currentPage}</span>
-        <button onClick={onNext} className="cursor-pointer">
+        <span className="text-[18px] font-bold">
+          {currentPage} / {totalCount}
+        </span>
+        <button
+          onClick={onNext}
+          className="cursor-pointer bg-blue-600 p-3 text-white rounded"
+        >
           Next
         </button>
       </div>
-      <p className="mt-3">Number of pages {totalCount}</p>
-    </>
+    </div>
   );
 };

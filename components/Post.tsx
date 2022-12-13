@@ -17,16 +17,16 @@ export const PostComponent = ({ postData }: IPost) => {
   };
 
   return (
-    <div className="flex w-full flex-col max-w-[1200px] mx-auto items-center">
+    <div className="flex w-full flex-col max-w-[1200px] mx-auto items-center p-6 xl:p-0">
       <div
         className="flex flex-col items-centerborder-radius-3
-  shadow-[0px_4px_10px_rgba(0,0,0,0.15)] w-1/3"
+  shadow-[0px_4px_10px_rgba(0,0,0,0.15)] rounded"
       >
-        <img src={imageUrl} className="mb-5 h-[200px]" />
-        <div className="px-4 pb-4 w-full">
-          <h3 className="text-[14px] mb-3">{title}</h3>
-          <p className="text-[14px]">{excerpt}</p>
-          <ul className="text-xs text-fuchsia-400 text-center w-full mb-3">
+        <img src={imageUrl} className="mb-3" />
+        <div className="px-4 pb-3 w-full">
+          <h3 className="text-[14px] mb-3 text-center">{title}</h3>
+          <p className="text-[14px] mb-3">{excerpt}</p>
+          <ul className="text-xs text-fuchsia-400 text-center w-full mb-3 text-[18px] flex flex-col gap-4 pt-4">
             {mapCategoryIdsToNames(categories).map((cat) => {
               if (cat) {
                 return <li key={cat?.id}>{cat?.name}</li>;
@@ -35,7 +35,9 @@ export const PostComponent = ({ postData }: IPost) => {
           </ul>
         </div>
       </div>
-      <Link href={`/`}>go back</Link>
+      <Link href={`/`} className="mt-5 bg-blue-600 p-3 text-white rounded">
+        go back
+      </Link>
     </div>
   );
 };
