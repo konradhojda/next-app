@@ -11,32 +11,21 @@ function getAllPostSlugs() {
   return postSlugs.map((slug) => {
     return {
       params: {
-        slug: slug.replace(/\.md$/, ""),
+        slug,
       },
     };
   });
 }
 
 export default function SinglePostPage({ postData }: { postData: Post }) {
-  const { imageUrl, slug, title, excerpt, categories } = postData;
-
-  const mapCategoryIdsToNames = (categoryIds: number[]) => {
-    return categoryIds
-      .map((categoryId) => data.categories.find((el) => el.id == categoryId))
-      .filter((el) => Boolean(el));
-  };
-
   return (
     <PostComponent postData={postData} />
   );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log("BBBBBBBBBBBBBB");
   const postSlug = params?.slug as string;
   const postData = data.posts.find((post) => post.slug === postSlug);
-
-  console.log("AAA", postSlug);
 
   return {
     props: {
@@ -47,8 +36,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const postSlugs = getAllPostSlugs();
-
-  console.log("postIds", postSlugs);
 
   return {
     paths: postSlugs,
