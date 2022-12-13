@@ -1,4 +1,4 @@
-export interface Posts {
+export interface Post {
     categories: number[];
     excerpt: string;
     id: number;
@@ -7,8 +7,8 @@ export interface Posts {
     title: string;
 }
 
-export interface Categories {
+export interface Category {
     id: number;
     name: string;
-    slug: "books";
+    slug: string;
 }
