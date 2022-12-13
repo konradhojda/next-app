@@ -4,13 +4,13 @@ import React, { useMemo, useState } from "react";
 import { Post } from "../api/blog";
 import data from "../api/blog.json";
 import { Pagination } from "../components/Pagination";
-import { POSTS_SIZE } from "../utils/consts";
+import { POSTS_SIZE } from "../utils/const";
 
 
 export default function Home() {
   const { posts } = data;
+  
   const [blogPosts, setBlogPosts] = useState<Post[]>(posts);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<number | undefined>(
     undefined

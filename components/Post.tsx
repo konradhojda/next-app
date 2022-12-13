@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Post } from "../api/blog";
-
 import data from "../api/blog.json";
 
 interface IPost {
