@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { Post } from "../api/blog";
 import data from "../api/blog.json";
@@ -16,39 +16,37 @@ export default function Home() {
   );
   const [filterValue, setFilterValue] = useState("");
 
+  useEffect(() => {
+    const updatedPosts = posts.filter((post) => {
+      if (!selectedCategory) {
+        return post.title.includes(filterValue);
+      }
+
+      return (
+        post.title.includes(filterValue) &&
+        post.categories.includes(selectedCategory)
+      );
+    });
+    setCurrentPage(1);
+
+    setBlogPosts(updatedPosts)
+  }, [filterValue, selectedCategory])
+
   const onPageChange = (value: number) => {
     return value > 0 && value < blogPosts.length && setCurrentPage(value);
   };
+
+
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
     setFilterValue(value);
 
-    const filteredPosts = filterPostsByTitle(value);
-    setBlogPosts(filteredPosts);
-    setCurrentPage(1);
   };
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.currentTarget.value);
     setSelectedCategory(value || undefined);
-
-    if (!value) {
-      setBlogPosts(posts);
-      return;
-    }
-
-    const filteredPosts = filterPostsByCategory(value);
-    setBlogPosts(filteredPosts);
-    setCurrentPage(1);
-  };
-
-  const filterPostsByTitle = (search: string) => {
-    return posts.filter((post) => post.title.includes(search));
-  };
-
-  const filterPostsByCategory = (category: number) => {
-    return posts.filter((post) => post.categories.includes(category));
   };
 
   const currentTableData = useMemo(() => {

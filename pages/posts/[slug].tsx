@@ -11,7 +11,7 @@ function getAllPostSlugs() {
   return postSlugs.map((slug) => {
     return {
       params: {
-        slug: slug,
+        slug,
       },
     };
   });
@@ -24,8 +24,6 @@ export default function SinglePostPage({ postData }: { postData: Post }) {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const postSlug = params?.slug as string;
   const postData = data.posts.find((post) => post.slug === postSlug);
-
-  console.log("AAA", postSlug);
 
   return {
     props: {
