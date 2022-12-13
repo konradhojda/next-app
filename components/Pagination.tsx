@@ -23,7 +23,7 @@ export const Pagination = ({
     }
   };
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div className="flex gap-3 items-center justify-center">
         <button
           onClick={onPrevious}
