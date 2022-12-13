@@ -11,7 +11,7 @@ function getAllPostSlugs() {
   return postSlugs.map((slug) => {
     return {
       params: {
-        slug,
+        slug: slug,
       },
     };
   });

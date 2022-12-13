@@ -23,7 +23,7 @@ export const Pagination = ({
     }
   };
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div className="flex gap-3 items-center justify-center">
         <button
           onClick={onPrevious}
@@ -32,7 +32,7 @@ export const Pagination = ({
           Prev
         </button>
         <span className="text-[18px] font-bold">
-          {currentPage} / {totalCount}
+          {currentPage} / {totalCount ? totalCount : 1}
         </span>
         <button
           onClick={onNext}

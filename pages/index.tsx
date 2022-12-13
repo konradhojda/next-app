@@ -37,11 +37,9 @@ export default function Home() {
   };
 
 
-
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
     setFilterValue(value);
-
   };
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
